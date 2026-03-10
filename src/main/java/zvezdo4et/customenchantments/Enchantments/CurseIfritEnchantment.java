@@ -1,0 +1,93 @@
+package zvezdo4et.customenchantments.Enchantments;
+
+import io.papermc.paper.enchantments.EnchantmentRarity;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import zvezdo4et.customenchantments.CustomEnchantments;
+import zvezdo4et.customenchantments.ProcreatorEnchantments;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class CurseIfritEnchantment extends ProcreatorEnchantments {
+    public static final CurseIfritEnchantment INSTANCE = new CurseIfritEnchantment();
+
+    public CurseIfritEnchantment() {
+        super(
+                new NamespacedKey(CustomEnchantments.getInstance(), "curseifrit"),
+                "Проклятие ифрита",
+                1,
+                20,
+                10,
+                10,
+                3);
+    }
+
+
+    @Override
+    public @NotNull EnchantmentTarget getItemTarget() {
+        return EnchantmentTarget.ARMOR_TORSO;
+    }
+
+    @Override
+    public boolean canEnchantItem(@NotNull ItemStack item){
+        Material type = item.getType();
+        String typeName = type.toString();
+
+        return typeName.endsWith("_CHESTPLATE");
+    }
+
+    @Override
+    public boolean isTreasure() {
+        return false;
+    }
+
+    @Override
+    public boolean isCursed() {
+        return true;
+    }
+
+    @Override
+    public boolean isTradeable() {
+        return false;
+    }
+
+    @Override
+    public boolean isDiscoverable() {
+        return true;
+    }
+
+    @Override
+    public @NotNull EnchantmentRarity getRarity() {
+        return EnchantmentRarity.VERY_RARE;
+    }
+
+    @Override
+    public @NotNull Set<EquipmentSlot> getActiveSlots() {
+        Set<EquipmentSlot> slots = new HashSet<>();
+        slots.add(EquipmentSlot.CHEST);
+        return slots;
+    }
+
+    @Override
+    public boolean conflictsWith(@NotNull Enchantment other) {
+        return false;
+    }
+
+    @Override
+    public @NotNull Component displayName(int level) {
+        return Component.text("Проклятие ифрита")
+                .color(TextColor.color(0xFF5555))
+                .decoration(TextDecoration.ITALIC, false);
+    }
+
+
+}

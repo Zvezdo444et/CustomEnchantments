@@ -1,0 +1,9 @@
+name: CustomEnchantments
+version: '${project.version}'
+main: zvezdo4et.customenchantments.CustomEnchantments
+api-version: '1.16'
+commands:
+  customench:
+    permission: CustomEnchantments.customench
+  getitems:
+    permission: CustomEnchantments.getitems
